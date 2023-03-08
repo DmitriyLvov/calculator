@@ -1,0 +1,13 @@
+@import '../../../styles/styles.scss';
+
+.component {
+  border: 1px solid $borderInactive !important;
+  border-radius: 6px;
+  height: 48px;
+  font: 500 14px/15px 'Inter';
+}
+
+.component:hover {
+  border: 1px solid $borderActive !important;
+  color: #000 !important;
+}
