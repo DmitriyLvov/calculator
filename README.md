@@ -44,3 +44,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+#TODO
+Курсоры при перемещении
+Последняя область по остатку экрана
+Курсоры на кнопках
+Образ перемещения. Не соответствует ТЗ.
+Блокировать DND компонентов на правой части, если компонент недоступен.
+При переключении в рантайм скрывать панель конструктора.

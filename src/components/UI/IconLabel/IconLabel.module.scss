@@ -1,0 +1,28 @@
+@import "../../../styles/styles.scss";
+
+.component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 12px;
+  &_active {
+    @extend .component;
+    background-color: #fff;
+    border: 1px solid $inactiveWhite;
+    border-radius: 5px;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+  margin-block: 0;
+  font: 500 14px/15px "Inter";
+  color: #4d5562;
+}

@@ -1,0 +1,37 @@
+@import "../../../../../styles/styles.scss";
+
+.component {
+  width: 243px;
+  height: 448px;
+  border: 2px dashed #c4c4c4;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &_dropping {
+    @extend .component;
+    cursor: move;
+    background-color: #f0f9ff;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.header {
+  font: 500 14px/17px "Inter";
+  margin: 12px 0 0;
+  padding: 0;
+  color: $activeBlue;
+}
+
+.description {
+  font: 500 12px/15px "Inter";
+  margin: 4px auto 0;
+  padding: 0;
+  color: #6b7280;
+  width: 106px;
+  text-align: center;
+}

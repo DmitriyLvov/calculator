@@ -1,15 +1,18 @@
-import { Counter } from './features/counter/Counter';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import styles from './App.module.scss';
 import ConstructorPanel from './components/Views/ConstructorPanel/ConstructorPanel';
 import DisplayPanel from './components/Views/DisplayPanel/DisplayPanel';
 
 function App() {
   return (
-    <div className={styles.app}>
-      {/* <Counter /> */}
-      <ConstructorPanel />
-      <DisplayPanel />
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div className={styles.app}>
+        <ConstructorPanel />
+        <DisplayPanel />
+      </div>
+    </DndProvider>
   );
 }
 

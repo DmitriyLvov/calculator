@@ -1,0 +1,22 @@
+@import "../../../../styles/styles.scss";
+
+.component {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 243px;
+  height: 38px;
+  padding: 0 1px;
+  border-radius: 6px;
+  background-color: $inactiveGray;
+  cursor: pointer;
+}
+
+.pageWrapper {
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.pageWrapper:hover {
+  opacity: 0.8;
+}
