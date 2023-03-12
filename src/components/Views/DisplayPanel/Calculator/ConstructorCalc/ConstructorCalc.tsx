@@ -1,23 +1,23 @@
 import { useAppSelector } from 'app/store';
-import DigitDisplay from 'components/UI/DigitDisplay/DigitDisplay';
-import EqualButton from 'components/UI/EqualButton/EqualButton';
+import DigitDisplay from 'components/business/DigitDisplay/DigitDisplay';
+import EqualButton from 'components/business/EqualButton/EqualButton';
 import { CalcComponentType } from 'components/Views/ConstructorPanel/ConstructorPanel';
 import NumberPanel from 'components/Views/ConstructorPanel/NumberPanel/NumberPanel';
 import SignPanel from 'components/Views/ConstructorPanel/SignPanel/SignPanel';
 import React from 'react';
 
+import CalcElement from './CalcElement/CalcElement';
 import styles from './ConstructorCalc.module.scss';
-import Divider from './Divider/Divider';
 
 type IModule = {
   [key in CalcComponentType]: React.ReactElement;
 };
 
 const modules: IModule = {
-  Display: <DigitDisplay />,
-  Numbers: <NumberPanel />,
-  Signs: <SignPanel />,
-  Equal: <EqualButton />,
+  Display: <DigitDisplay isDraggable={false} />,
+  Numbers: <NumberPanel isDraggable={true} />,
+  Signs: <SignPanel isDraggable={true} />,
+  Equal: <EqualButton isDraggable={true} />,
 };
 
 const ConstructorCalc = () => {
@@ -26,18 +26,16 @@ const ConstructorCalc = () => {
   return (
     <div className={styles.component}>
       {specification.map((component, index) => (
-        <div
-          className={styles.constructorArea}
-          key={`${component}_constructor`}
-        >
-          {index === 0 && <Divider height="4px" index={index} />}
+        // Намеренно используем индекс в качестве ключа, т.к. компонент должен перестраиваться при изменении его положения (заново отрабатывает хук DND)
+        <CalcElement key={index} index={index}>
           {modules[component]}
-          <Divider
-            height={specification.length - index === 1 ? "100px" : "8px"}
-            index={index + 1}
-          />
-        </div>
+        </CalcElement>
       ))}
+      <CalcElement
+        key={specification.length}
+        index={specification.length}
+        isLast={true}
+      />
     </div>
   );
 };

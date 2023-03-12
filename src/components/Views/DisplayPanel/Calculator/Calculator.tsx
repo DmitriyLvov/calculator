@@ -5,10 +5,15 @@ import ConstructorCalc from './ConstructorCalc/ConstructorCalc';
 import EmptyCalc from './EmptyCalc/EmptyCalc';
 
 const Calculator = () => {
-  const { specification } = useAppSelector((state) => state.calculator);
+  const { specification, mode } = useAppSelector((state) => state.calculator);
+
   return (
     <div className={styles.component}>
-      {specification.length === 0 ? <EmptyCalc /> : <ConstructorCalc />}
+      {mode === "Constructor" && specification.length === 0 ? (
+        <EmptyCalc />
+      ) : (
+        <ConstructorCalc />
+      )}
     </div>
   );
 };

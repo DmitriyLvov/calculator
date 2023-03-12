@@ -1,6 +1,6 @@
 .component {
-  height: 448px;
-}
-
-.constructorArea {
+  height: 468px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

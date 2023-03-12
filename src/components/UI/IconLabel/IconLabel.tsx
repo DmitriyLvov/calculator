@@ -1,4 +1,4 @@
-import styles from "./IconLabel.module.scss";
+import styles from './IconLabel.module.scss';
 
 interface IconLabelProps {
   activeIcon: string;

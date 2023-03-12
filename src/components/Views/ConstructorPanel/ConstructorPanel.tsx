@@ -1,5 +1,7 @@
-import DigitDisplay from '../../UI/DigitDisplay/DigitDisplay';
-import EqualButton from '../../UI/EqualButton/EqualButton';
+import { useAppSelector } from 'app/store';
+
+import DigitDisplay from '../../business/DigitDisplay/DigitDisplay';
+import EqualButton from '../../business/EqualButton/EqualButton';
 import styles from './ConstructorPanel.module.scss';
 import NumberPanel from './NumberPanel/NumberPanel';
 import SignPanel from './SignPanel/SignPanel';
@@ -7,14 +9,29 @@ import SignPanel from './SignPanel/SignPanel';
 export type CalcComponentType = "Display" | "Numbers" | "Signs" | "Equal";
 
 const ConstructorPanel = () => {
+  const { mode, specification } = useAppSelector((state) => state.calculator);
   return (
     <div className={styles.component}>
-      <div className={styles.panel}>
-        <DigitDisplay isDraggable={true} />
-        <SignPanel isDraggable={true} />
-        <NumberPanel isDraggable={true} />
-        <EqualButton isDraggable={true} />
-      </div>
+      {mode === "Constructor" && (
+        <div className={styles.panel}>
+          <DigitDisplay
+            isDraggable={specification.indexOf("Display") === -1}
+            isCanHide={true}
+          />
+          <SignPanel
+            isDraggable={specification.indexOf("Signs") === -1}
+            isCanHide={true}
+          />
+          <NumberPanel
+            isDraggable={specification.indexOf("Numbers") === -1}
+            isCanHide={true}
+          />
+          <EqualButton
+            isDraggable={specification.indexOf("Equal") === -1}
+            isCanHide={true}
+          />
+        </div>
+      )}
     </div>
   );
 };

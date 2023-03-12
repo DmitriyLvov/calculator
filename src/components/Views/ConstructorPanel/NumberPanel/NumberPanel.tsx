@@ -1,3 +1,4 @@
+import { useAppSelector } from 'app/store';
 import useDragND from 'hooks/useDragND';
 
 import NumberButton from '../../../UI/NumberButton/NumberButton';
@@ -19,17 +20,27 @@ const numbers = [
 
 interface NumberPanelProps {
   isDraggable?: boolean;
+  isCanHide?: boolean;
 }
 
-const NumberPanel = ({ isDraggable = false }: NumberPanelProps) => {
-  const { drag, styleMode } = useDragND("Numbers", isDraggable);
+const NumberPanel = ({
+  isDraggable = false,
+  isCanHide = false,
+}: NumberPanelProps) => {
+  const { drag, styleMode } = useDragND("Numbers", isDraggable, isCanHide);
+  const { mode } = useAppSelector((state) => state.calculator);
   return (
     <div
       className={styles[`component${styleMode}`]}
       ref={isDraggable ? drag : undefined}
     >
       {numbers.map(({ number, module }) => (
-        <NumberButton key={number} number={number} module={module} />
+        <NumberButton
+          key={number}
+          number={number}
+          module={module}
+          isDisabled={mode === "Constructor"}
+        />
       ))}
     </div>
   );

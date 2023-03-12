@@ -13,6 +13,7 @@
     @extend .component;
     cursor: no-drop;
     opacity: 0.4;
+    box-shadow: none;
   }
   &_dragging {
     @extend .component;
@@ -26,8 +27,16 @@
   background-color: $inactiveGray;
   border-radius: 6px;
   text-align: right;
-  font: 800 36px/52px "Inter";
+
   color: #111827;
   margin: 0;
   padding: 0 8px 0;
+  &_large {
+    @extend .display;
+    font: 800 36px/52px "Inter";
+  }
+  &_small {
+    @extend .display;
+    font: 800 19px/52px "Inter";
+  }
 }

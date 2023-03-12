@@ -2,11 +2,18 @@ import { useAppSelector } from 'app/store';
 import { CalcComponentType } from 'components/Views/ConstructorPanel/ConstructorPanel';
 import { useDrag } from 'react-dnd';
 
-const useDragND = (type: CalcComponentType, isDraggable: boolean) => {
+const useDragND = (
+  type: CalcComponentType,
+  isDraggable: boolean,
+  isCanHide: boolean
+) => {
   const { specification, mode } = useAppSelector((state) => state.calculator);
 
+  const currentIndex = specification.findIndex((item) => item === type);
+  const isCreated = currentIndex > -1;
+
   const [{ isDragging }, drag] = useDrag(() => ({
-    item: { type },
+    item: { type, index: currentIndex },
     type: "calc",
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -14,15 +21,10 @@ const useDragND = (type: CalcComponentType, isDraggable: boolean) => {
     }),
   }));
 
-  const isCreated = specification.indexOf(type) > -1;
-
   let styleMode;
-  // Если компонент перемещается
-  if (isDragging) {
-    styleMode = "_dragging";
-  }
+
   // Если компонент создан и находится на панели слева (не доступен, т.к. уже создан)
-  else if (isCreated && isDraggable) {
+  if (isCanHide && isCreated) {
     styleMode = "_created";
   }
   // Если комонент в режиме конструктора и находится на панели слева (доступен к перемещению)

@@ -27,10 +27,12 @@ const Pages = () => {
   const { mode } = useAppSelector((state) => state.calculator);
   const dispatch = useAppDispatch();
 
-  const selectHandler = (e: any) => {
+  const selectHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    if (e.target.innerText) {
-      dispatch(setMode(e.target.innerText));
+    const p = e.target as HTMLDivElement;
+    console.log(p.innerText);
+    if (p.innerText) {
+      dispatch(setMode(p.innerText));
     }
   };
 
