@@ -30,7 +30,6 @@ const Pages = () => {
   const selectHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     const p = e.target as HTMLDivElement;
-    console.log(p.innerText);
     if (p.innerText) {
       dispatch(setMode(p.innerText));
     }

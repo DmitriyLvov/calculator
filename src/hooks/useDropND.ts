@@ -19,7 +19,6 @@ const useDropND = (index: number) => {
     drop(item) {
       const { type, index: currentIndex } = item as DropItem;
       if (type) {
-        console.log(index);
         dispatch(
           changeSpecificaion({
             index,

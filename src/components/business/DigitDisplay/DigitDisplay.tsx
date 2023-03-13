@@ -1,7 +1,7 @@
-import { useAppSelector } from 'app/store';
-import useDragND from 'hooks/useDragND';
+import { useAppSelector } from "app/store";
+import useDragND from "hooks/useDragND";
 
-import styles from './DigitDisplay.module.scss';
+import styles from "./DigitDisplay.module.scss";
 
 interface DigitDisplayProps {
   isDraggable?: boolean;
@@ -13,7 +13,7 @@ const DigitDisplay = ({
   isCanHide = false,
 }: DigitDisplayProps) => {
   const { drag, styleMode } = useDragND("Display", isDraggable, isCanHide);
-  const { displayText } = useAppSelector((state) => state.calculator);
+  const { displayNumber } = useAppSelector((state) => state.calculator);
 
   return (
     <div
@@ -22,10 +22,10 @@ const DigitDisplay = ({
     >
       <p
         className={
-          displayText.length < 9 ? styles.display_large : styles.display_small
+          displayNumber.length < 9 ? styles.display_large : styles.display_small
         }
       >
-        {displayText}
+        {displayNumber}
       </p>
     </div>
   );

@@ -6,20 +6,18 @@ import { createSlice } from "@reduxjs/toolkit";
 interface IInitialState {
   mode: "Constructor" | "Runtime";
   operation?: ISign;
-  isDecimal: boolean;
-  firstNumber: number;
-  displayNumber: number;
-  displayText: string;
+  firstNumber: string;
+  displayNumber: string;
   specification: CalcComponentType[];
+  resultWasShown: boolean;
 }
 
 const initialState: IInitialState = {
   mode: "Constructor",
   specification: [],
-  displayNumber: 0,
-  firstNumber: 0,
-  displayText: "0",
-  isDecimal: false,
+  displayNumber: "0",
+  firstNumber: "0",
+  resultWasShown: false,
 };
 
 export const counterSlice = createSlice({
@@ -27,25 +25,24 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     setDisplay: (state, action) => {
-      const { textFormat, numberFormat } = action.payload;
-      state.displayText = textFormat;
-      state.displayNumber = numberFormat;
+      state.displayNumber = action.payload;
+    },
+    setResultWasShown: (state, action) => {
+      state.resultWasShown = action.payload;
     },
     setOperation: (state, action) => {
       state.operation = action.payload;
     },
-    setDecimal: (state, action) => {
-      state.isDecimal = action.payload;
-    },
     saveNumber: (state) => {
       state.firstNumber = state.displayNumber;
-      state.displayNumber = 0;
+      state.resultWasShown = true;
     },
     setMode: (state, action) => {
       if (state.mode !== action.payload) {
         state.mode = action.payload;
-        state.displayText = "0";
-        state.displayNumber = 0;
+        state.displayNumber = "0";
+        state.operation = undefined;
+        state.firstNumber = "0";
       }
     },
     changeSpecificaion: (state, action) => {
@@ -76,8 +73,8 @@ export const {
   saveNumber,
   setMode,
   changeSpecificaion,
+  setResultWasShown,
   setOperation,
-  setDecimal,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;
