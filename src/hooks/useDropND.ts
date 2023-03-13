@@ -1,6 +1,6 @@
-import { useAppDispatch } from 'app/store';
-import { useDrop } from 'react-dnd';
-import { changeSpecificaion } from 'slices/CalculatorSlice';
+import { useAppDispatch } from "app/store";
+import { useDrop } from "react-dnd";
+import { changeSpecificaion } from "slices/CalculatorSlice";
 
 interface DropItem {
   type: string;
@@ -18,7 +18,8 @@ const useDropND = (index: number) => {
     }),
     drop(item) {
       const { type, index: currentIndex } = item as DropItem;
-      if (type && currentIndex) {
+      if (type) {
+        console.log(index);
         dispatch(
           changeSpecificaion({
             index,

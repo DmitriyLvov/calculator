@@ -1,7 +1,7 @@
-import { CalcComponentType } from 'components/Views/ConstructorPanel/ConstructorPanel';
-import { ISign } from 'components/Views/ConstructorPanel/SignPanel/SignPanel';
+import { CalcComponentType } from "components/Views/ConstructorPanel/ConstructorPanel";
+import { ISign } from "components/Views/ConstructorPanel/SignPanel/SignPanel";
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 interface IInitialState {
   mode: "Constructor" | "Runtime";
@@ -55,8 +55,9 @@ export const counterSlice = createSlice({
         if (currentIndex === -1) {
           state.specification.splice(index, 0, type);
         } else {
+          const correctedIndex = currentIndex < index ? index - 1 : index;
           state.specification.splice(
-            index,
+            correctedIndex,
             0,
             state.specification.splice(currentIndex, 1)[0]
           );
