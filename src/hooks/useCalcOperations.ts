@@ -1,17 +1,30 @@
-import { useAppDispatch, useAppSelector } from 'app/store';
-import { ISign } from 'components/Views/ConstructorPanel/SignPanel/SignPanel';
-import { saveNumber, setDecimal, setDisplay, setOperation } from 'slices/CalculatorSlice';
+import { useAppDispatch, useAppSelector } from "app/store";
+import { ISign } from "components/Views/ConstructorPanel/SignPanel/SignPanel";
+import {
+  saveNumber,
+  setDisplay,
+  setOperation,
+  setResultWasShown,
+} from "slices/CalculatorSlice";
 
 const useCalcOperations = () => {
   const dispatch = useAppDispatch();
-  const { firstNumber, operation, displayNumber, displayText, isDecimal } =
+  const { firstNumber, operation, displayNumber, resultWasShown } =
     useAppSelector((state) => state.calculator);
+
+  const converStringToNum = (num: string) => {
+    if (num.indexOf(",") > -1) {
+      return Number.parseFloat(num.replace(",", "."));
+    } else {
+      return Number.parseInt(num);
+    }
+  };
 
   const formatNumber = (number: number) => {
     // Если количество символов меньше 18, то выводим обычный результат
     if (number.toString().length < 19 || number < 1) {
       // Если число меньше 0, то добавляем единицу для корректной работы движка JS
-      if (number < 1) {
+      if (number < 1 && number > 0) {
         const result = (+(number + 1).toFixed(15)).toString().replace(".", ",");
         return `0${result.substring(1)}`;
       }
@@ -31,91 +44,74 @@ const useCalcOperations = () => {
   };
 
   const addDigit = (digit: string) => {
-    // Ограничение по длине дисплея
-    if (displayNumber.toString().length < 8) {
-      // Обработка запятой
+    if (resultWasShown) {
+      dispatch(setResultWasShown(false));
+      // Если после знака нажали "0", то сохраняем "0"
       if (digit === ",") {
-        if (displayText.indexOf(",") === -1) {
-          dispatch(setDecimal(true));
-        }
-        // Если нажали запятую без 0 на втором числе
-        if (displayNumber === 0 && operation) {
-          dispatch(setDisplay({ textFormat: "0", numberFormat: 0 }));
-          dispatch(setDecimal(true));
-        }
+        dispatch(setDisplay("0,"));
+      } else {
+        dispatch(setDisplay(digit));
+      }
+      return;
+    }
+
+    // Ограничение по длине дисплея
+    if (displayNumber.length < 8) {
+      // Обработка нескольких запятых
+      if (digit === "," && displayNumber.indexOf(",") > -1) {
         return;
       }
-      // Обработка цифр
-      let numberFormat, textFormat;
-      if (isDecimal) {
-        // Если до этого была нажата запятая, то следующая цифра идет через "."
-        numberFormat = Number.parseFloat(`${displayNumber}.${digit}`);
-        textFormat = `${displayText},${digit}`;
-        dispatch(setDecimal(false));
-      } else {
-        numberFormat = Number.parseFloat(`${displayNumber}${digit}`);
-        textFormat = `${displayText}${digit}`;
-      }
-      // Если был обнулен числовой формат экрана (выбор знака), то перемещаем значение из числового
-      if (
-        textFormat.length !== numberFormat.toString().length &&
-        numberFormat.toString().length === 1 &&
-        operation
-      ) {
-        textFormat = digit;
+
+      if (displayNumber === "0") {
+        // Обработка на запись многих нулей в начале
+        if (digit === "0") return;
+        // Убираем 0, если вводим цифру
+        if (digit !== ",") return dispatch(setDisplay(digit));
       }
 
-      // Обработка на запись многих нулей
-      if (textFormat === "00") {
-        textFormat = "0";
-      }
-      // Убираем 0, если вводим цифру
-      if (
-        textFormat[0] === "0" &&
-        textFormat.length > 1 &&
-        textFormat.indexOf(",") === -1
-      ) {
-        textFormat = textFormat[1];
-      }
-      dispatch(setDisplay({ numberFormat, textFormat }));
+      dispatch(setDisplay(`${displayNumber}${digit}`));
     }
   };
 
   const equalOperation = () => {
     let result = 0;
+    const num1 = converStringToNum(firstNumber);
+    const num2 = converStringToNum(displayNumber);
     switch (operation) {
       case "+": {
-        result = firstNumber + displayNumber;
+        result = num1 + num2;
         break;
       }
       case "-": {
-        result = firstNumber - displayNumber;
+        result = num1 - num2;
         break;
       }
       case "x": {
-        result = firstNumber * displayNumber;
+        result = num1 * num2;
         break;
       }
       case "/": {
-        result = firstNumber / displayNumber;
+        result = num1 / num2;
         break;
       }
       default: {
         break;
       }
     }
-
     const textFormat = handleResult(result);
-    const numberFormat = result;
-    console.log({ firstNumber, displayNumber, result });
-    dispatch(setDisplay({ textFormat, numberFormat }));
+    dispatch(setDisplay(textFormat));
     dispatch(saveNumber());
   };
 
   const addOperation = (sign: ISign) => {
     // Если нет числа, с которым нужно произвести операции, то сохраняем его в сторе
-    if (!firstNumber) {
+    if (firstNumber === "0") {
+      console.log("save ");
       dispatch(saveNumber());
+    }
+    // Последовательные операции без нажатия "="
+    if (operation && firstNumber) {
+      equalOperation();
     }
     dispatch(setOperation(sign));
   };

@@ -1,13 +1,13 @@
-import { useAppSelector } from 'app/store';
-import DigitDisplay from 'components/business/DigitDisplay/DigitDisplay';
-import EqualButton from 'components/business/EqualButton/EqualButton';
-import { CalcComponentType } from 'components/Views/ConstructorPanel/ConstructorPanel';
-import NumberPanel from 'components/Views/ConstructorPanel/NumberPanel/NumberPanel';
-import SignPanel from 'components/Views/ConstructorPanel/SignPanel/SignPanel';
-import React from 'react';
+import { useAppSelector } from "app/store";
+import DigitDisplay from "components/business/DigitDisplay/DigitDisplay";
+import EqualButton from "components/business/EqualButton/EqualButton";
+import { CalcComponentType } from "components/Views/ConstructorPanel/ConstructorPanel";
+import NumberPanel from "components/Views/ConstructorPanel/NumberPanel/NumberPanel";
+import SignPanel from "components/Views/ConstructorPanel/SignPanel/SignPanel";
+import React from "react";
 
-import CalcElement from './CalcElement/CalcElement';
-import styles from './ConstructorCalc.module.scss';
+import CalcElement from "./CalcElement/CalcElement";
+import styles from "./ConstructorCalc.module.scss";
 
 type IModule = {
   [key in CalcComponentType]: React.ReactElement;
@@ -26,7 +26,6 @@ const ConstructorCalc = () => {
   return (
     <div className={styles.component}>
       {specification.map((component, index) => (
-        // Намеренно используем индекс в качестве ключа, т.к. компонент должен перестраиваться при изменении его положения (заново отрабатывает хук DND)
         <CalcElement key={index} index={index}>
           {modules[component]}
         </CalcElement>
