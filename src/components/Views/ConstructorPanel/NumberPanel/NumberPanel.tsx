@@ -1,8 +1,9 @@
-import { useAppSelector } from 'app/store';
-import useDragND from 'hooks/useDragND';
+import useDragND from "hooks/useDragND";
+import { memo } from "react";
+import { useAppSelector } from "store/store";
 
-import NumberButton from '../../../UI/NumberButton/NumberButton';
-import styles from './NumberPanel.module.scss';
+import NumberButton from "../../../business/NumberButton/NumberButton";
+import styles from "./NumberPanel.module.scss";
 
 const numbers = [
   { number: "9", module: 1 },
@@ -23,27 +24,26 @@ interface NumberPanelProps {
   isCanHide?: boolean;
 }
 
-const NumberPanel = ({
-  isDraggable = false,
-  isCanHide = false,
-}: NumberPanelProps) => {
-  const { drag, styleMode } = useDragND("Numbers", isDraggable, isCanHide);
-  const { mode } = useAppSelector((state) => state.calculator);
-  return (
-    <div
-      className={styles[`component${styleMode}`]}
-      ref={isDraggable ? drag : undefined}
-    >
-      {numbers.map(({ number, module }) => (
-        <NumberButton
-          key={number}
-          number={number}
-          module={module}
-          isDisabled={mode === "Constructor"}
-        />
-      ))}
-    </div>
-  );
-};
+const NumberPanel = memo(
+  ({ isDraggable = false, isCanHide = false }: NumberPanelProps) => {
+    const { drag, styleMode } = useDragND("Numbers", isDraggable, isCanHide);
+    const { mode } = useAppSelector((state) => state.mode);
+    return (
+      <div
+        className={styles[`component${styleMode}`]}
+        ref={isDraggable ? drag : undefined}
+      >
+        {numbers.map(({ number, module }) => (
+          <NumberButton
+            key={number}
+            number={number}
+            module={module}
+            isDisabled={mode === "Constructor"}
+          />
+        ))}
+      </div>
+    );
+  }
+);
 
 export default NumberPanel;

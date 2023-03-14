@@ -1,4 +1,6 @@
-import styles from './IconLabel.module.scss';
+import { memo } from "react";
+
+import styles from "./IconLabel.module.scss";
 
 interface IconLabelProps {
   activeIcon: string;
@@ -7,22 +9,19 @@ interface IconLabelProps {
   isActive: boolean;
 }
 
-const IconLabel = ({
-  activeIcon,
-  inactiveIcon,
-  text,
-  isActive,
-}: IconLabelProps) => {
-  return (
-    <div className={isActive ? styles.component_active : styles.component}>
-      <img
-        className={styles.icon}
-        src={isActive ? activeIcon : inactiveIcon}
-        alt="icon"
-      />
-      <p className={styles.text}>{text}</p>
-    </div>
-  );
-};
+const IconLabel = memo(
+  ({ activeIcon, inactiveIcon, text, isActive }: IconLabelProps) => {
+    return (
+      <div className={isActive ? styles.component_active : styles.component}>
+        <img
+          className={styles.icon}
+          src={isActive ? activeIcon : inactiveIcon}
+          alt="icon"
+        />
+        <p className={styles.text}>{text}</p>
+      </div>
+    );
+  }
+);
 
 export default IconLabel;

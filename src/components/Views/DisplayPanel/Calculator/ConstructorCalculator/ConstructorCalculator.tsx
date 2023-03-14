@@ -1,13 +1,13 @@
-import { useAppSelector } from "app/store";
 import DigitDisplay from "components/business/DigitDisplay/DigitDisplay";
 import EqualButton from "components/business/EqualButton/EqualButton";
 import { CalcComponentType } from "components/Views/ConstructorPanel/ConstructorPanel";
 import NumberPanel from "components/Views/ConstructorPanel/NumberPanel/NumberPanel";
 import SignPanel from "components/Views/ConstructorPanel/SignPanel/SignPanel";
 import React from "react";
+import { useAppSelector } from "store/store";
 
-import CalcElement from "./CalcElement/CalcElement";
-import styles from "./ConstructorCalc.module.scss";
+import styles from "./ConstructorCalculator.module.scss";
+import DragElement from "./DragElement/DragElement";
 
 type IModule = {
   [key in CalcComponentType]: React.ReactElement;
@@ -20,17 +20,17 @@ const modules: IModule = {
   Equal: <EqualButton isDraggable={true} />,
 };
 
-const ConstructorCalc = () => {
+const ConstructorCalculator = () => {
   const { specification } = useAppSelector((state) => state.calculator);
 
   return (
     <div className={styles.component}>
       {specification.map((component, index) => (
-        <CalcElement key={index} index={index}>
+        <DragElement key={index} index={index}>
           {modules[component]}
-        </CalcElement>
+        </DragElement>
       ))}
-      <CalcElement
+      <DragElement
         key={specification.length}
         index={specification.length}
         isLast={true}
@@ -39,4 +39,4 @@ const ConstructorCalc = () => {
   );
 };
 
-export default ConstructorCalc;
+export default ConstructorCalculator;

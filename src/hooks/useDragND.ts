@@ -1,16 +1,21 @@
-import { useAppSelector } from 'app/store';
-import { CalcComponentType } from 'components/Views/ConstructorPanel/ConstructorPanel';
-import { useDrag } from 'react-dnd';
+import { CalcComponentType } from "components/Views/ConstructorPanel/ConstructorPanel";
+import { useDrag } from "react-dnd";
+import { useAppSelector } from "store/store";
 
 const useDragND = (
   type: CalcComponentType,
   isDraggable: boolean,
   isCanHide: boolean
 ) => {
-  const { specification, mode } = useAppSelector((state) => state.calculator);
+  const { specification } = useAppSelector((state) => state.calculator);
+  const { mode } = useAppSelector((state) => state.mode);
 
-  const currentIndex = specification.findIndex((item) => item === type);
-  const isCreated = currentIndex > -1;
+  // Если элемент может скрываться (находится на панели слева), то индекс всегда будет "-1"
+  const currentIndex = isCanHide
+    ? -1
+    : specification.findIndex((item) => item === type);
+  // Определяем, создан ли элемент
+  const isCreated = specification.findIndex((item) => item === type) > -1;
 
   const [{ isDragging }, drag] = useDrag(() => ({
     item: { type, index: currentIndex },
@@ -29,7 +34,7 @@ const useDragND = (
   }
   // Если комонент в режиме конструктора и находится на панели слева (доступен к перемещению)
   else if (mode === "Constructor" && isDraggable) {
-    styleMode = "_inactive";
+    styleMode = isCreated ? "_active" : "_inactive";
   }
   // Для остальных случаях обычное отображение компонента
   else {

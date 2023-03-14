@@ -1,9 +1,10 @@
-import newIcon from 'components/icons/svg/new.svg';
-import useDropND from 'hooks/useDropND';
+import newIcon from "components/icons/svg/new.svg";
+import useDropND from "hooks/useDropND";
+import { memo } from "react";
 
-import styles from './EmptyCalc.module.scss';
+import styles from "./EmptyCalculator.module.scss";
 
-const EmptyCalc = () => {
+const EmptyCalc = memo(() => {
   const { isOver, drop } = useDropND(0);
 
   return (
@@ -18,6 +19,6 @@ const EmptyCalc = () => {
       </div>
     </div>
   );
-};
+});
 
 export default EmptyCalc;

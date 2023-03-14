@@ -1,6 +1,8 @@
-import styles from './SplitterLine.module.scss';
+import { memo } from "react";
 
-const SplitterLine = () => {
+import styles from "./SplitterLine.module.scss";
+
+const SplitterLine = memo(() => {
   return (
     <div className={styles.component}>
       <div className={styles.square_left}></div>
@@ -8,6 +10,6 @@ const SplitterLine = () => {
       <div className={styles.square_right}></div>
     </div>
   );
-};
+});
 
 export default SplitterLine;

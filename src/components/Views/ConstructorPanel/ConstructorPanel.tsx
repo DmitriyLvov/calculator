@@ -1,15 +1,17 @@
-import { useAppSelector } from 'app/store';
+import { useAppSelector } from "store/store";
 
-import DigitDisplay from '../../business/DigitDisplay/DigitDisplay';
-import EqualButton from '../../business/EqualButton/EqualButton';
-import styles from './ConstructorPanel.module.scss';
-import NumberPanel from './NumberPanel/NumberPanel';
-import SignPanel from './SignPanel/SignPanel';
+import DigitDisplay from "../../business/DigitDisplay/DigitDisplay";
+import EqualButton from "../../business/EqualButton/EqualButton";
+import styles from "./ConstructorPanel.module.scss";
+import NumberPanel from "./NumberPanel/NumberPanel";
+import SignPanel from "./SignPanel/SignPanel";
 
 export type CalcComponentType = "Display" | "Numbers" | "Signs" | "Equal";
 
 const ConstructorPanel = () => {
-  const { mode, specification } = useAppSelector((state) => state.calculator);
+  const { specification } = useAppSelector((state) => state.calculator);
+  const { mode } = useAppSelector((state) => state.mode);
+
   return (
     <div className={styles.component}>
       {mode === "Constructor" && (

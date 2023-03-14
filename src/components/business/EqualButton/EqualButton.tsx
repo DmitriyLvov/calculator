@@ -1,36 +1,42 @@
-import { useAppSelector } from 'app/store';
-import StandartButton from 'components/UI/StandartButton/StandartButton';
-import useCalcOperations from 'hooks/useCalcOperations';
-import useDragND from 'hooks/useDragND';
+import StandartButton from "components/UI/StandartButton/StandartButton";
+import useDragND from "hooks/useDragND";
+import { memo, useCallback } from "react";
+import { equalOperation } from "slices/CalculatorSlice";
+import { useAppDispatch, useAppSelector } from "store/store";
 
-import styles from './EqualButton.module.scss';
+import styles from "./EqualButton.module.scss";
 
 interface EqualButtonProps {
   isDraggable?: boolean;
   isCanHide?: boolean;
 }
 
-const EqualButton = ({
-  isDraggable = false,
-  isCanHide = false,
-}: EqualButtonProps) => {
-  const { drag, styleMode } = useDragND("Equal", isDraggable, isCanHide);
-  const { equalOperation } = useCalcOperations();
-  const { mode } = useAppSelector((state) => state.calculator);
+const EqualButton = memo(
+  ({ isDraggable = false, isCanHide = false }: EqualButtonProps) => {
+    const { drag, styleMode } = useDragND("Equal", isDraggable, isCanHide);
 
-  return (
-    <div
-      className={styles[`component${styleMode}`]}
-      ref={isDraggable ? drag : undefined}
-    >
-      <StandartButton
-        text="="
-        onClick={equalOperation}
-        color="primary"
-        isDisabled={mode === "Constructor"}
-      />
-    </div>
-  );
-};
+    const dispatch = useAppDispatch();
+
+    const { mode } = useAppSelector((state) => state.mode);
+
+    const equalHandler = useCallback(() => {
+      dispatch(equalOperation());
+    }, []);
+
+    return (
+      <div
+        className={styles[`component${styleMode}`]}
+        ref={isDraggable ? drag : undefined}
+      >
+        <StandartButton
+          text="="
+          onClick={equalHandler}
+          color="primary"
+          isDisabled={mode === "Constructor"}
+        />
+      </div>
+    );
+  }
+);
 
 export default EqualButton;

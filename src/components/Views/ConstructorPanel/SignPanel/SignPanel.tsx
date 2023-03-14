@@ -1,9 +1,10 @@
-import { useAppSelector } from 'app/store';
-import useCalcOperations from 'hooks/useCalcOperations';
-import useDragND from 'hooks/useDragND';
+import useDragND from "hooks/useDragND";
+import { memo, useCallback } from "react";
+import { setOperation } from "slices/CalculatorSlice";
+import { useAppDispatch, useAppSelector } from "store/store";
 
-import SignButton from '../../../UI/SignButton/SignButton';
-import styles from './SignPanel.module.scss';
+import SignButton from "../../../UI/SignButton/SignButton";
+import styles from "./SignPanel.module.scss";
 
 export type ISign = "/" | "x" | "-" | "+";
 
@@ -14,29 +15,33 @@ interface SignPanelProps {
   isCanHide?: boolean;
 }
 
-const SignPanel = ({
-  isDraggable = false,
-  isCanHide = false,
-}: SignPanelProps) => {
-  const { drag, styleMode } = useDragND("Signs", isDraggable, isCanHide);
-  const { addOperation } = useCalcOperations();
-  const { mode } = useAppSelector((state) => state.calculator);
+const SignPanel = memo(
+  ({ isDraggable = false, isCanHide = false }: SignPanelProps) => {
+    const dispatch = useAppDispatch();
+    const { drag, styleMode } = useDragND("Signs", isDraggable, isCanHide);
+    const { mode } = useAppSelector((state) => state.mode);
 
-  return (
-    <div
-      className={styles[`component${styleMode}`]}
-      ref={isDraggable ? drag : undefined}
-    >
-      {signs.map((sign) => (
-        <SignButton
-          sign={sign}
-          key={sign}
-          onClick={() => addOperation(sign)}
-          isDisabled={mode === "Constructor"}
-        />
-      ))}
-    </div>
-  );
-};
+    const addOperationMemo = useCallback((e: React.MouseEvent) => {
+      const button = e.target as HTMLButtonElement;
+      dispatch(setOperation(button.name));
+    }, []);
+
+    return (
+      <div
+        className={styles[`component${styleMode}`]}
+        ref={isDraggable ? drag : undefined}
+      >
+        {signs.map((sign) => (
+          <SignButton
+            sign={sign}
+            key={sign}
+            onClick={addOperationMemo}
+            isDisabled={mode === "Constructor"}
+          />
+        ))}
+      </div>
+    );
+  }
+);
 
 export default SignPanel;

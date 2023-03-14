@@ -3,22 +3,19 @@
 .component {
   height: 52px;
   padding: 4px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  &_inactive {
+  &_active {
     @extend .component;
     cursor: move;
+  }
+  &_inactive {
+    @extend .component_active;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
   &_created {
     @extend .component;
     cursor: no-drop;
     opacity: 0.4;
-    box-shadow: none;
-  }
-  &_dragging {
-    @extend .component;
-    cursor: move;
-    opacity: 1;
   }
 }
 
@@ -27,13 +24,16 @@
   background-color: $inactiveGray;
   border-radius: 6px;
   text-align: right;
-
   color: #111827;
   margin: 0;
   padding: 0 8px 0;
   &_large {
     @extend .display;
     font: 800 36px/52px "Inter";
+  }
+  &_medium {
+    @extend .display;
+    font: 800 24px/52px "Inter";
   }
   &_small {
     @extend .display;

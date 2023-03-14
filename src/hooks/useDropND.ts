@@ -1,6 +1,6 @@
-import { useAppDispatch } from "app/store";
 import { useDrop } from "react-dnd";
 import { changeSpecificaion } from "slices/CalculatorSlice";
+import { useAppDispatch } from "store/store";
 
 interface DropItem {
   type: string;

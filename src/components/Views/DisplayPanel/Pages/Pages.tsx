@@ -1,12 +1,14 @@
-import { useAppDispatch, useAppSelector } from 'app/store';
-import activeEye from 'components/icons/svg/eye-active.svg';
-import inactiveEye from 'components/icons/svg/eye-inactive.svg';
-import activeSelector from 'components/icons/svg/selector-active.svg';
-import inactiveSelector from 'components/icons/svg/selector-inactive.svg';
-import { setMode } from 'slices/CalculatorSlice';
+import activeEye from "components/icons/svg/eye-active.svg";
+import inactiveEye from "components/icons/svg/eye-inactive.svg";
+import activeSelector from "components/icons/svg/selector-active.svg";
+import inactiveSelector from "components/icons/svg/selector-inactive.svg";
+import { useCallback } from "react";
+import { resetData } from "slices/CalculatorSlice";
+import { setMode } from "slices/ModeSlice";
+import { useAppDispatch, useAppSelector } from "store/store";
 
-import IconLabel from '../../../UI/IconLabel/IconLabel';
-import styles from './Pages.module.scss';
+import IconLabel from "../../../UI/IconLabel/IconLabel";
+import styles from "./Pages.module.scss";
 
 interface IPage {
   title: string;
@@ -24,16 +26,20 @@ const pages: IPage[] = [
 ];
 
 const Pages = () => {
-  const { mode } = useAppSelector((state) => state.calculator);
+  const { mode } = useAppSelector((state) => state.mode);
   const dispatch = useAppDispatch();
 
-  const selectHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    const p = e.target as HTMLDivElement;
-    if (p.innerText) {
-      dispatch(setMode(p.innerText));
-    }
-  };
+  const selectHandler = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation();
+      const p = e.target as HTMLDivElement;
+      if (p.innerText !== mode) {
+        dispatch(setMode(p.innerText));
+        dispatch(resetData());
+      }
+    },
+    [mode]
+  );
 
   return (
     <div className={styles.component}>
