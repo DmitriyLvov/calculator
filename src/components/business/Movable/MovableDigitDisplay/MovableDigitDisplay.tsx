@@ -12,12 +12,10 @@ const MovableDigitDisplay = memo(
     const { styleMode, drag } = useDragND("Display", isDraggable, isCanHide);
 
     return (
-      <div>
-        <DigitDisplay
-          drag={isDraggable ? drag : undefined}
-          styleMode={`component${styleMode}`}
-        />
-      </div>
+      <DigitDisplay
+        drag={isDraggable ? drag : undefined}
+        styleMode={`component${styleMode}`}
+      />
     );
   }
 );
