@@ -17,12 +17,11 @@ const useDragND = (
   // Определяем, создан ли элемент
   const isCreated = specification.findIndex((item) => item === type) > -1;
 
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
     item: { type, index: currentIndex },
     type: "calc",
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
-      opacity: monitor.isDragging() ? 0.8 : 1,
     }),
   }));
 
@@ -41,7 +40,7 @@ const useDragND = (
     styleMode = "";
   }
 
-  return { isDragging, drag, styleMode };
+  return { isDragging, drag, styleMode, dragPreview };
 };
 
 export default useDragND;

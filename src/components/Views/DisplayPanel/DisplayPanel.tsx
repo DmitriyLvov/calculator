@@ -1,10 +1,8 @@
-import { memo } from "react";
-
 import Calculator from "./Calculator/Calculator";
 import styles from "./DisplayPanel.module.scss";
 import Pages from "./Pages/Pages";
 
-const DisplayPanel = memo(() => {
+const DisplayPanel = () => {
   return (
     <div className={styles.component}>
       <div className={styles.panel}>
@@ -13,6 +11,6 @@ const DisplayPanel = memo(() => {
       </div>
     </div>
   );
-});
+};
 
 export default DisplayPanel;

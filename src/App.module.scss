@@ -5,3 +5,11 @@
   height: 100vh;
   display: flex;
 }
+
+@media screen and (max-width: 500px) {
+  .app {
+    height: inherit;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+}

@@ -1,8 +1,8 @@
-import SplitterLine from "components/UI/SplitterLine/SplitterLine";
-import useDropND from "hooks/useDropND";
-import React from "react";
-import { changeSpecificaion } from "slices/CalculatorSlice";
-import { useAppDispatch, useAppSelector } from "store/store";
+import SplitterLine from 'components/UI/SplitterLine/SplitterLine';
+import useDropND from 'hooks/useDropND';
+import React from 'react';
+import { changeSpecificaion } from 'slices/CalculatorSlice';
+import { useAppDispatch, useAppSelector } from 'store/store';
 
 interface CalcElementProps {
   children?: React.ReactElement;
@@ -10,7 +10,7 @@ interface CalcElementProps {
   isLast?: boolean;
 }
 
-const DragElement = ({ children, index, isLast = false }: CalcElementProps) => {
+const DropElement = ({ children, index, isLast = false }: CalcElementProps) => {
   const { drop, isOver } = useDropND(index);
   const { mode } = useAppSelector((state) => state.mode);
   const dispatch = useAppDispatch();
@@ -34,4 +34,4 @@ const DragElement = ({ children, index, isLast = false }: CalcElementProps) => {
   );
 };
 
-export default DragElement;
+export default DropElement;

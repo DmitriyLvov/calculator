@@ -1,38 +1,34 @@
 import StandartButton from "components/UI/StandartButton/StandartButton";
-import useDragND from "hooks/useDragND";
 import { memo, useCallback } from "react";
+import { ConnectDragSource } from "react-dnd";
 import { equalOperation } from "slices/CalculatorSlice";
-import { useAppDispatch, useAppSelector } from "store/store";
+import { useAppDispatch } from "store/store";
 
 import styles from "./EqualButton.module.scss";
 
 interface EqualButtonProps {
-  isDraggable?: boolean;
-  isCanHide?: boolean;
+  styleClass?: string;
+  isDisabled?: boolean;
+  drag?: ConnectDragSource;
 }
 
 const EqualButton = memo(
-  ({ isDraggable = false, isCanHide = false }: EqualButtonProps) => {
-    const { drag, styleMode } = useDragND("Equal", isDraggable, isCanHide);
-
+  ({ isDisabled = false, styleClass, drag }: EqualButtonProps) => {
     const dispatch = useAppDispatch();
-
-    const { mode } = useAppSelector((state) => state.mode);
-
     const equalHandler = useCallback(() => {
       dispatch(equalOperation());
     }, []);
 
     return (
       <div
-        className={styles[`component${styleMode}`]}
-        ref={isDraggable ? drag : undefined}
+        className={styles[styleClass ? styleClass : "component"]}
+        ref={drag ? drag : undefined}
       >
         <StandartButton
           text="="
           onClick={equalHandler}
           color="primary"
-          isDisabled={mode === "Constructor"}
+          isDisabled={isDisabled}
         />
       </div>
     );

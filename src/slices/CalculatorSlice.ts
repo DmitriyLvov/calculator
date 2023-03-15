@@ -1,5 +1,5 @@
+import { ISign } from "components/business/SignPanel/SignPanel";
 import { CalcComponentType } from "components/Views/ConstructorPanel/ConstructorPanel";
-import { ISign } from "components/Views/ConstructorPanel/SignPanel/SignPanel";
 import { converStringToNum, handleResult } from "utils/formatResult";
 
 import { createSlice } from "@reduxjs/toolkit";

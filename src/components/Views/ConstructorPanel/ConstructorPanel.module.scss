@@ -10,3 +10,9 @@
   flex-direction: column;
   gap: 12px;
 }
+
+@media screen and (max-width: 500px) {
+  .panel {
+    margin: 0 auto;
+  }
+}

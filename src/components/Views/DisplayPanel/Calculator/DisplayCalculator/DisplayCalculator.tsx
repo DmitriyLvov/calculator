@@ -1,14 +1,13 @@
 import DigitDisplay from "components/business/DigitDisplay/DigitDisplay";
 import EqualButton from "components/business/EqualButton/EqualButton";
+import NumberPanel from "components/business/NumberPanel/NumberPanel";
+import SignPanel from "components/business/SignPanel/SignPanel";
 import { CalcComponentType } from "components/Views/ConstructorPanel/ConstructorPanel";
-import NumberPanel from "components/Views/ConstructorPanel/NumberPanel/NumberPanel";
-import SignPanel from "components/Views/ConstructorPanel/SignPanel/SignPanel";
 import useHotKeys from "hooks/useHotKeys";
 import React, { useEffect } from "react";
 import { useAppSelector } from "store/store";
 
 import styles from "../ConstructorCalculator/ConstructorCalculator.module.scss";
-import DragElement from "../ConstructorCalculator/DragElement/DragElement";
 
 type IModule = {
   [key in CalcComponentType]: React.ReactElement;
@@ -38,16 +37,9 @@ const DisplayCalculator = () => {
 
   return (
     <div className={styles.component}>
-      {specification.map((component, index) => (
-        <DragElement key={index} index={index}>
-          {modules[component]}
-        </DragElement>
+      {specification.map((component) => (
+        <div key={component}>{modules[component]}</div>
       ))}
-      <DragElement
-        key={specification.length}
-        index={specification.length}
-        isLast={true}
-      />
     </div>
   );
 };

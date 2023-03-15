@@ -1,4 +1,4 @@
-import { ISign } from "components/Views/ConstructorPanel/SignPanel/SignPanel";
+import { ISign } from "components/business/SignPanel/SignPanel";
 import { memo } from "react";
 
 import StandartButton from "../StandartButton/StandartButton";

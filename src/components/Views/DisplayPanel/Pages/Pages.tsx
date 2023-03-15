@@ -29,27 +29,24 @@ const Pages = () => {
   const { mode } = useAppSelector((state) => state.mode);
   const dispatch = useAppDispatch();
 
-  const selectHandler = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      e.stopPropagation();
-      const p = e.target as HTMLDivElement;
-      if (p.innerText !== mode) {
-        dispatch(setMode(p.innerText));
-        dispatch(resetData());
-      }
-    },
-    [mode]
-  );
+  const selectHandler = (text: string) => {
+    console.log(text);
+    if (["Runtime", "Constructor"].indexOf(text) > -1 && text !== mode) {
+      dispatch(setMode(text));
+      dispatch(resetData());
+    }
+  };
 
   return (
     <div className={styles.component}>
       {pages.map(({ title, activeIcon, inactiveIcon }) => (
-        <div className={styles.pageWrapper} onClick={selectHandler} key={title}>
+        <div className={styles.pageWrapper} key={title}>
           <IconLabel
             text={title}
             activeIcon={activeIcon}
             inactiveIcon={inactiveIcon}
             isActive={title === mode}
+            onClick={selectHandler}
           />
         </div>
       ))}
