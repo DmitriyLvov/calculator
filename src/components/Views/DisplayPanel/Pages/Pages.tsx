@@ -2,7 +2,6 @@ import activeEye from "components/icons/svg/eye-active.svg";
 import inactiveEye from "components/icons/svg/eye-inactive.svg";
 import activeSelector from "components/icons/svg/selector-active.svg";
 import inactiveSelector from "components/icons/svg/selector-inactive.svg";
-import { useCallback } from "react";
 import { resetData } from "slices/CalculatorSlice";
 import { setMode } from "slices/ModeSlice";
 import { useAppDispatch, useAppSelector } from "store/store";

@@ -1,5 +1,3 @@
-import { memo, useCallback } from "react";
-
 import styles from "./IconLabel.module.scss";
 
 interface IconLabelProps {

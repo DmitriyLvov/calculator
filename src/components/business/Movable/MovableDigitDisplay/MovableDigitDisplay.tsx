@@ -1,8 +1,6 @@
-import DigitDisplay from 'components/business/DigitDisplay/DigitDisplay';
-import display from 'components/icons/dnd/Display.png';
-import useDragND from 'hooks/useDragND';
-import { memo } from 'react';
-import { DragPreviewImage, useDrag } from 'react-dnd';
+import DigitDisplay from "components/business/DigitDisplay/DigitDisplay";
+import useDragND from "hooks/useDragND";
+import { memo } from "react";
 
 interface MovableDigitDisplayProps {
   isDraggable?: boolean;
@@ -11,11 +9,7 @@ interface MovableDigitDisplayProps {
 
 const MovableDigitDisplay = memo(
   ({ isDraggable = false, isCanHide = false }: MovableDigitDisplayProps) => {
-    const { styleMode, drag, dragPreview } = useDragND(
-      "Display",
-      isDraggable,
-      isCanHide
-    );
+    const { styleMode, drag } = useDragND("Display", isDraggable, isCanHide);
 
     return (
       <div>
@@ -23,7 +17,6 @@ const MovableDigitDisplay = memo(
           drag={isDraggable ? drag : undefined}
           styleMode={`component${styleMode}`}
         />
-        <DragPreviewImage connect={dragPreview} src={display} />
       </div>
     );
   }
