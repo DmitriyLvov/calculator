@@ -1,6 +1,7 @@
 import MovableDigitDisplay from "components/business/Movable/MovableDigitDisplay/MovableDigitDisplay";
 import MovableEqualButton from "components/business/Movable/MovableEqualButton/MovableEqualButton";
 import MovableSignPanel from "components/business/Movable/MovableSignPanel/MovableSignPanel";
+import { memo } from "react";
 import { useAppSelector } from "store/store";
 
 import MovableNumberPanel from "../../business/Movable/MovableNumberPanel/MovableNumberPanel";
@@ -8,7 +9,7 @@ import styles from "./ConstructorPanel.module.scss";
 
 export type CalcComponentType = "Display" | "Numbers" | "Signs" | "Equal";
 
-const ConstructorPanel = () => {
+const ConstructorPanel = memo(() => {
   const { mode, specification } = useAppSelector((state) => state.mode);
 
   return (
@@ -35,6 +36,6 @@ const ConstructorPanel = () => {
       )}
     </div>
   );
-};
+});
 
 export default ConstructorPanel;

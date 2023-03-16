@@ -1,0 +1,471 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Render Snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="component"
+      >
+        <div>
+          <div
+            class="component"
+          >
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name="9"
+              >
+                9
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name="8"
+              >
+                8
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name="7"
+              >
+                7
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name="6"
+              >
+                6
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name="5"
+              >
+                5
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name="4"
+              >
+                4
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name="3"
+              >
+                3
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name="2"
+              >
+                2
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name="1"
+              >
+                1
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 72px;"
+            >
+              <button
+                class="component_secondary"
+                name=","
+              >
+                ,
+              </button>
+            </div>
+            <div
+              class="component"
+              style="width: 152px;"
+            >
+              <button
+                class="component_secondary"
+                name="0"
+              >
+                0
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="component"
+          >
+            <button
+              class="component_primary"
+              name="="
+            >
+              =
+            </button>
+          </div>
+        </div>
+        <div>
+          <div
+            class="component"
+          >
+            <div
+              class="component"
+            >
+              <button
+                class="component_secondary"
+                name="/"
+              >
+                /
+              </button>
+            </div>
+            <div
+              class="component"
+            >
+              <button
+                class="component_secondary"
+                name="x"
+              >
+                x
+              </button>
+            </div>
+            <div
+              class="component"
+            >
+              <button
+                class="component_secondary"
+                name="-"
+              >
+                -
+              </button>
+            </div>
+            <div
+              class="component"
+            >
+              <button
+                class="component_secondary"
+                name="+"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="component"
+          >
+            <p
+              class="display_large"
+            >
+              0
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="component"
+    >
+      <div>
+        <div
+          class="component"
+        >
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name="9"
+            >
+              9
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name="8"
+            >
+              8
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name="7"
+            >
+              7
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name="6"
+            >
+              6
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name="5"
+            >
+              5
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name="4"
+            >
+              4
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name="3"
+            >
+              3
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name="2"
+            >
+              2
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name="1"
+            >
+              1
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 72px;"
+          >
+            <button
+              class="component_secondary"
+              name=","
+            >
+              ,
+            </button>
+          </div>
+          <div
+            class="component"
+            style="width: 152px;"
+          >
+            <button
+              class="component_secondary"
+              name="0"
+            >
+              0
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="component"
+        >
+          <button
+            class="component_primary"
+            name="="
+          >
+            =
+          </button>
+        </div>
+      </div>
+      <div>
+        <div
+          class="component"
+        >
+          <div
+            class="component"
+          >
+            <button
+              class="component_secondary"
+              name="/"
+            >
+              /
+            </button>
+          </div>
+          <div
+            class="component"
+          >
+            <button
+              class="component_secondary"
+              name="x"
+            >
+              x
+            </button>
+          </div>
+          <div
+            class="component"
+          >
+            <button
+              class="component_secondary"
+              name="-"
+            >
+              -
+            </button>
+          </div>
+          <div
+            class="component"
+          >
+            <button
+              class="component_secondary"
+              name="+"
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="component"
+        >
+          <p
+            class="display_large"
+          >
+            0
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "store": Object {
+    "@@observable": [Function],
+    "dispatch": [Function],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+  "unmount": [Function],
+}
+`;
