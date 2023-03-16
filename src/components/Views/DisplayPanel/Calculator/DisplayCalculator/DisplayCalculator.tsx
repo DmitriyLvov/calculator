@@ -21,7 +21,7 @@ const modules: IModule = {
 };
 
 const DisplayCalculator = () => {
-  const { specification } = useAppSelector((state) => state.calculator);
+  const { specification } = useAppSelector((state) => state.mode);
 
   const keyExecute = useHotKeys();
 

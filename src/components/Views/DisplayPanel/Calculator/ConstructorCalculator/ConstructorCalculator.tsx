@@ -21,7 +21,7 @@ const modules: IModule = {
 };
 
 const ConstructorCalculator = () => {
-  const { specification } = useAppSelector((state) => state.calculator);
+  const { specification } = useAppSelector((state) => state.mode);
 
   return (
     <div className={styles.component}>

@@ -7,8 +7,7 @@ const useDragND = (
   isDraggable: boolean,
   isCanHide: boolean
 ) => {
-  const { specification } = useAppSelector((state) => state.calculator);
-  const { mode } = useAppSelector((state) => state.mode);
+  const { mode, specification } = useAppSelector((state) => state.mode);
 
   // Если элемент может скрываться (находится на панели слева), то индекс всегда будет "-1"
   const currentIndex = isCanHide

@@ -1,8 +1,8 @@
-import SplitterLine from 'components/UI/SplitterLine/SplitterLine';
-import useDropND from 'hooks/useDropND';
-import React from 'react';
-import { changeSpecificaion } from 'slices/CalculatorSlice';
-import { useAppDispatch, useAppSelector } from 'store/store';
+import SplitterLine from "components/UI/SplitterLine/SplitterLine";
+import useDropND from "hooks/useDropND";
+import React from "react";
+import { changeSpecificaion } from "slices/ModeSlice";
+import { useAppDispatch, useAppSelector } from "store/store";
 
 interface CalcElementProps {
   children?: React.ReactElement;

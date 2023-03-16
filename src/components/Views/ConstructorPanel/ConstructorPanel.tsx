@@ -9,8 +9,7 @@ import styles from "./ConstructorPanel.module.scss";
 export type CalcComponentType = "Display" | "Numbers" | "Signs" | "Equal";
 
 const ConstructorPanel = () => {
-  const { specification } = useAppSelector((state) => state.calculator);
-  const { mode } = useAppSelector((state) => state.mode);
+  const { mode, specification } = useAppSelector((state) => state.mode);
 
   return (
     <div className={styles.component}>

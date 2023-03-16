@@ -6,8 +6,7 @@ import DisplayCalculator from "./DisplayCalculator/DisplayCalculator";
 import EmptyCalculator from "./EmptyCalculator/EmptyCalculator";
 
 const Calculator = () => {
-  const { specification } = useAppSelector((state) => state.calculator);
-  const { mode } = useAppSelector((state) => state.mode);
+  const { mode, specification } = useAppSelector((state) => state.mode);
 
   return (
     <div className={styles.component}>

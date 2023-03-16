@@ -1,19 +1,16 @@
-import { ISign } from "components/business/SignPanel/SignPanel";
-import { CalcComponentType } from "components/Views/ConstructorPanel/ConstructorPanel";
-import { converStringToNum, handleResult } from "utils/formatResult";
+import { ISign } from 'components/business/SignPanel/SignPanel';
+import { converStringToNum, handleResult } from 'utils/formatResult';
 
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 interface IInitialState {
   operation?: ISign;
   firstNumber: string;
   displayNumber: string;
-  specification: CalcComponentType[];
   resultWasShown: boolean;
 }
 
 const initialState: IInitialState = {
-  specification: [],
   displayNumber: "0",
   firstNumber: "0",
   resultWasShown: false,
@@ -122,26 +119,6 @@ export const counterSlice = createSlice({
       }
     },
 
-    changeSpecificaion: (state, action) => {
-      const { operation } = action.payload;
-      if (operation === "addElement") {
-        const { type, index, currentIndex } = action.payload;
-        if (currentIndex === -1) {
-          state.specification.splice(index, 0, type);
-        } else {
-          const correctedIndex = currentIndex < index ? index - 1 : index;
-          state.specification.splice(
-            correctedIndex,
-            0,
-            state.specification.splice(currentIndex, 1)[0]
-          );
-        }
-      }
-      if (operation === "deleteElement") {
-        const { index } = action.payload;
-        state.specification.splice(index, 1);
-      }
-    },
     resetData: (state) => {
       state.firstNumber = "0";
       state.displayNumber = "0";
@@ -155,7 +132,7 @@ export const {
   setOperation,
   equalOperation,
   resetData,
-  changeSpecificaion,
+  
 } = counterSlice.actions;
 
 export default counterSlice.reducer;
